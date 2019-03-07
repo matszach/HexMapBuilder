@@ -38,6 +38,13 @@
                         </items>
                     </Menu>
 
+
+                    <Menu text="Export as">
+                        <items>
+                            <MenuItem text="PNG" onAction="#exportMapToPng"/>
+                        </items>
+                    </Menu>
+
                 </MenuBar>
             </center>
 
