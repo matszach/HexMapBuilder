@@ -14,7 +14,8 @@ import java.util.List;
 
 public class SymbolChooserPane extends Pane {
 
-    private final static double OFFSET = 10;
+
+    private final static double OFFSET = 5;
 
     private static List<Symbol> symbolsAsButtons = new ArrayList<>();
 
@@ -54,6 +55,8 @@ public class SymbolChooserPane extends Pane {
             symbol.setScaleY(1.00);
         }
     }
+
+
 
 
     private void placeSymbols(){
