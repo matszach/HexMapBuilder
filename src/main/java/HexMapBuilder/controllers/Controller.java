@@ -24,6 +24,7 @@ public class Controller {
     public void saveMap(){
         FileChooser chooser = new FileChooser();
         chooser.setInitialDirectory(new File("SavedMaps\\"));
+        chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("MAP","*.map"));
         File file = chooser.showSaveDialog(mainPane.getScene().getWindow());
         if(file==null){
             return; // chooser cancelled
@@ -37,6 +38,7 @@ public class Controller {
     public void loadMap(){
         FileChooser chooser = new FileChooser();
         chooser.setInitialDirectory(new File("SavedMaps\\"));
+        chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("MAP","*.map"));
         File file = chooser.showOpenDialog(mainPane.getScene().getWindow());
         if(file==null){
             return; // chooser cancelled
