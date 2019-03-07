@@ -1,0 +1,39 @@
+/* COLORS (now unused)*/
+/* *{
+   -fx-colorButtonBrown1: rgb(180,100,30);
+   -fx-colorButtonBrownHover1: rgb(210,130,50);
+   -fx-colorPaneBrown1: rgb(210,140,90);
+   -fx-colorMenuBrown1: rgb(180,120,90);
+} */
+
+
+
+/* INTEGER CONSTANTS */
+*{
+   -fx-buttonPrefWidth: 120px;
+}
+
+
+
+
+/* MENU BAR */
+.menu-bar{
+
+}
+
+
+/* CUSTOM APP-BUTTON */
+#appButton{
+    -fx-pref-width: -fx-buttonPrefWidth;
+    -fx-font-size: 12px;
+    -fx-background-radius: 5px;
+}
+
+
+
+/* Side Choice Panel (VBox) */
+#sideChoicePanel{
+
+}
+
+

@@ -1,0 +1,84 @@
+<?import javafx.geometry.Insets?>
+
+<?import javafx.scene.layout.BorderPane?>
+
+
+<?import CustomFXNodes.AppButton?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import HexMapBuilder.mapDisplayPane.MapDisplayPane?>
+<?import javafx.scene.layout.HBox?>
+<?import HexMapBuilder.sideChoicePanelComponents.fieldTypeChoice.FieldChooserPane?>
+<BorderPane fx:controller="HexMapBuilder.controllers.Controller"
+            xmlns:fx="http://javafx.com/fxml"
+            stylesheets="@mainStyles.css">
+
+
+
+    <!-- TOP -->
+    <top>
+        <BorderPane>
+
+            <center>
+                <MenuBar>
+
+                    <Menu text="File">
+                        <items>
+                            <MenuItem text="New" onAction="#drawNewMap"/>
+                            <SeparatorMenuItem/>
+                            <MenuItem text="Save" onAction="#saveMap"/>
+                            <SeparatorMenuItem/>
+                            <MenuItem text="Load" onAction="#loadMap"/>
+                        </items>
+                    </Menu>
+
+                </MenuBar>
+            </center>
+
+        </BorderPane>
+    </top>
+
+
+
+    <!-- LEFT -->
+    <left>
+
+    </left>
+
+
+
+    <!-- CENTER -->
+    <center>
+        <MapDisplayPane/>
+    </center>
+
+
+
+    <!-- RIGHT -->
+    <right>
+        <VBox fx:id="sideChoicePanel" spacing="10" alignment="TOP_CENTER">
+            <padding><Insets bottom="5" top="5" left="10" right="10"/></padding>
+            <AppButton text="TEMP"/>
+            <AppButton text="TEMP"/>
+            <AppButton text="TEMP"/>
+            <AppButton text="TEMP"/>
+            <FieldChooserPane prefHeight="190"/>
+            <AppButton text="TEMP"/>
+            <AppButton text="TEMP"/>
+            <AppButton text="TEMP"/>
+        </VBox>
+    </right>
+
+
+
+    <!-- BOTTOM -->
+    <bottom>
+
+    </bottom>
+
+
+
+</BorderPane>
