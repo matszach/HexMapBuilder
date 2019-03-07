@@ -11,10 +11,42 @@ import org.springframework.stereotype.Component;
 public class SymbolFactory {
     
     public final static double DESIRED_SYMBOL_WIDTH = HexField.HEXFIELD_WIDTH/2;
+    public final static double DESIRED_SYMBOL_HEIGHT = HexField.HEXFIELD_HEIGHT/2;
     
-    private final static double[] POINTS_FOR_CROWN = new double[]{0,0,  0,DESIRED_SYMBOL_WIDTH,  DESIRED_SYMBOL_WIDTH,DESIRED_SYMBOL_WIDTH,  DESIRED_SYMBOL_WIDTH,0};
-    private final static double[] POINTS_FOR_CASTLE = new double[]{0,0,  0,DESIRED_SYMBOL_WIDTH,  DESIRED_SYMBOL_WIDTH,DESIRED_SYMBOL_WIDTH,  DESIRED_SYMBOL_WIDTH,0};
-    private final static double[] POINTS_FOR_TOWN = new double[]{0,0,  0,DESIRED_SYMBOL_WIDTH,  DESIRED_SYMBOL_WIDTH,DESIRED_SYMBOL_WIDTH,  DESIRED_SYMBOL_WIDTH,0};
+    private final static double[] POINTS_FOR_CROWN = new double[]{
+            0,0,
+            0,-DESIRED_SYMBOL_HEIGHT,
+            DESIRED_SYMBOL_WIDTH/4,-DESIRED_SYMBOL_HEIGHT/2,
+            DESIRED_SYMBOL_WIDTH/2,-DESIRED_SYMBOL_HEIGHT,
+            DESIRED_SYMBOL_WIDTH/4*3,-DESIRED_SYMBOL_HEIGHT/2,
+            DESIRED_SYMBOL_WIDTH,-DESIRED_SYMBOL_HEIGHT,
+            DESIRED_SYMBOL_WIDTH,0};
+
+    private final static double[] POINTS_FOR_CASTLE = new double[]{
+            0,0,
+            0,-DESIRED_SYMBOL_HEIGHT,
+            DESIRED_SYMBOL_WIDTH/5,-DESIRED_SYMBOL_HEIGHT,
+            DESIRED_SYMBOL_WIDTH/5,-DESIRED_SYMBOL_HEIGHT/3*2,
+            DESIRED_SYMBOL_WIDTH/5*2,-DESIRED_SYMBOL_HEIGHT/3*2,
+            DESIRED_SYMBOL_WIDTH/5*2,-DESIRED_SYMBOL_HEIGHT,
+            DESIRED_SYMBOL_WIDTH/5*3,-DESIRED_SYMBOL_HEIGHT,
+            DESIRED_SYMBOL_WIDTH/5*3,-DESIRED_SYMBOL_HEIGHT/3*2,
+            DESIRED_SYMBOL_WIDTH/5*4,-DESIRED_SYMBOL_HEIGHT/3*2,
+            DESIRED_SYMBOL_WIDTH/5*4,-DESIRED_SYMBOL_HEIGHT,
+            DESIRED_SYMBOL_WIDTH/5*5,-DESIRED_SYMBOL_HEIGHT,
+            DESIRED_SYMBOL_WIDTH,0};
+
+    private final static double[] POINTS_FOR_SQUARE = new double[]{
+            0,0,
+            0,-DESIRED_SYMBOL_HEIGHT,
+            DESIRED_SYMBOL_WIDTH,-DESIRED_SYMBOL_HEIGHT,
+            DESIRED_SYMBOL_WIDTH,0};
+
+    private final static double[] POINTS_FOR_TRIANGLE = new double[]{
+            0,0,
+            DESIRED_SYMBOL_WIDTH/2,-DESIRED_SYMBOL_HEIGHT,
+            DESIRED_SYMBOL_WIDTH,0};
+
 
 
     private static Symbol currentSymbol;
@@ -24,8 +56,9 @@ public class SymbolFactory {
         switch (symbolType){
             case CROWN: return POINTS_FOR_CROWN;
             case CASTLE: return POINTS_FOR_CASTLE;
-            case TOWN: return POINTS_FOR_TOWN;
-            default: return POINTS_FOR_TOWN; // fixme?
+            case SQUARE: return POINTS_FOR_SQUARE;
+            case TRIANGLE: return POINTS_FOR_TRIANGLE;
+            default: return POINTS_FOR_SQUARE; // fixme?
         }
     }
 
@@ -38,9 +71,11 @@ public class SymbolFactory {
 
     private static void paintSymbolByStyle(SymbolColorStyle symbolColorStyle){
         switch (symbolColorStyle){
-            case BLACK: paintSymbol(Color.BLACK, Color.WHITE); break;
+            case BLACK: paintSymbol(Color.BLACK, Color.GRAY); break;
             case BLUE: paintSymbol(Color.BLUE, Color.BLACK); break;
             case RED: paintSymbol(Color.RED, Color.BLACK); break;
+            case GREEN: paintSymbol(Color.GREEN, Color.BLACK); break;
+            case YELLOW: paintSymbol(Color.YELLOW, Color.BLACK); break;
             default: break;
         }
     }

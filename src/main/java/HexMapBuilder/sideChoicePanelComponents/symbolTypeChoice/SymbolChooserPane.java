@@ -14,7 +14,7 @@ import java.util.List;
 
 public class SymbolChooserPane extends Pane {
 
-    private final static double OFFSET = 5;
+    private final static double OFFSET = 10;
 
     private static List<Symbol> symbolsAsButtons = new ArrayList<>();
 
@@ -38,7 +38,7 @@ public class SymbolChooserPane extends Pane {
                 allSymbolsOff();
 
 
-                // temp
+                // temp TODO
                 symbol.setStrokeWidth(2);
                 symbol.setScaleX(1.08);
                 symbol.setScaleY(1.08);
@@ -48,6 +48,7 @@ public class SymbolChooserPane extends Pane {
 
     public static void allSymbolsOff(){
         for(Symbol symbol:symbolsAsButtons){
+            // temp TODO
             symbol.setStrokeWidth(1);
             symbol.setScaleX(1.00);
             symbol.setScaleY(1.00);
@@ -63,12 +64,11 @@ public class SymbolChooserPane extends Pane {
 
         int index = symbolsAsButtons.indexOf(symbol);
 
-        int rowNum = index/3;
-        int colNum = index%3;
+        int rowNum = index/SymbolColorStyle.values().length;
+        int colNum = index%SymbolColorStyle.values().length;
 
-        double locX = colNum * HexField.HEXFIELD_WIDTH + OFFSET;
-
-        double locY = rowNum * (HexField.HEXFIELD_HEIGHT*1.33);
+        double locX = colNum * (SymbolFactory.DESIRED_SYMBOL_WIDTH*1.2) + OFFSET;
+        double locY = rowNum * (SymbolFactory.DESIRED_SYMBOL_HEIGHT*1.5);
 
         symbol.relocate(locX,locY);
         getChildren().add(symbol);
