@@ -5,10 +5,15 @@ import HexMapBuilder.mapDisplayPane.hexFields.FieldType;
 import HexMapBuilder.mapSaving.MapSaverAndLoader;
 import HexMapBuilder.mapSaving.MapSerializable;
 import javafx.fxml.FXML;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.FileChooser;
+
+import java.io.File;
 
 public class Controller {
 
-
+    @FXML
+    private BorderPane mainPane;
 
 
 
@@ -17,14 +22,26 @@ public class Controller {
     // methods
     @FXML
     public void saveMap(){
+        FileChooser chooser = new FileChooser();
+        chooser.setInitialDirectory(new File("SavedMaps\\"));
+        File file = chooser.showSaveDialog(mainPane.getScene().getWindow());
+        if(file==null){
+            return; // chooser cancelled
+        }
         MapSerializable ms = new MapSerializable(MapDisplayPane.getCurrentMap());
-        MapSaverAndLoader.save(ms, "map1");
+        MapSaverAndLoader.saveToFile(ms,file);
     }
 
 
     @FXML
     public void loadMap(){
-        MapSerializable ms = MapSaverAndLoader.load("map1");
+        FileChooser chooser = new FileChooser();
+        chooser.setInitialDirectory(new File("SavedMaps\\"));
+        File file = chooser.showOpenDialog(mainPane.getScene().getWindow());
+        if(file==null){
+            return; // chooser cancelled
+        }
+        MapSerializable ms = MapSaverAndLoader.loadFromFile(file);
         MapDisplayPane.drawFromMapSerializable(ms);
     }
 

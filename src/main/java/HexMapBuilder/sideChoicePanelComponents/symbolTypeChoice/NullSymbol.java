@@ -52,7 +52,5 @@ public class NullSymbol extends Symbol {
        setFill(Color.GRAY);
        setStroke(Color.BLACK);
        setOnMouseClicked(e->onAction());
-
-
     }
 }

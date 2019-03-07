@@ -19,14 +19,9 @@ public class MouseBrushController {
     private static boolean symbolRemovingMode;
 
 
-
-
     @PostConstruct
     private static void init(){
         currentType = FieldType.SEA; // default
-        //temp fixme
-//        currentSymbolType = SymbolType.CASTLE;
-//        currentSymbolColorStyle = SymbolColorStyle.RED;
     }
 
 
