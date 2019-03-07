@@ -10,7 +10,7 @@ So far you can:
 
 Upcoming features:
 - exporting maps to .png files,
-- ability to save more than one map (mapsaing is still in it's infancy)
+- ability to save more than one map (map saving is still in it's infancy)
 
 This project utilizes:
 - Java SDK 11
