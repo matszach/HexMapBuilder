@@ -4,6 +4,7 @@ import HexMapBuilder.controllers.MouseBrushController;
 import HexMapBuilder.mapDisplayPane.hexFields.FieldType;
 import HexMapBuilder.mapDisplayPane.hexFields.HexField;
 import HexMapBuilder.sideChoicePanelComponents.fieldTypeChoice.HexFieldAsRadioButton;
+import HexMapBuilder.sideChoicePanelComponents.symbolTypeChoice.SymbolChooserPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
@@ -15,8 +16,7 @@ public class FieldChooserPane extends Pane {
 
     private final static double OFFSET = 5;
 
-
-    private List<HexFieldAsRadioButton> hexes = new ArrayList<>();
+    private static List<HexFieldAsRadioButton> hexes = new ArrayList<>();
 
 
 
@@ -29,6 +29,9 @@ public class FieldChooserPane extends Pane {
     private void equipHexButtons(){
         for(HexFieldAsRadioButton hex : hexes){
             hex.setOnMouseClicked(e-> {
+                SymbolChooserPane.allSymbolsOff();
+                MouseBrushController.setCurrentSymbolType(null);
+                MouseBrushController.setCurrentSymbolColorStyle(null);
                 MouseBrushController.setCurrentType(hex.getFieldType());
                 allHexesOff();
                 hex.hexOn();
@@ -36,7 +39,7 @@ public class FieldChooserPane extends Pane {
         }
     }
 
-    private void allHexesOff(){
+    public static void allHexesOff(){
         for(HexFieldAsRadioButton hex : hexes){
             hex.hexOff();
         }

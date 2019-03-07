@@ -12,6 +12,7 @@
 <?import HexMapBuilder.mapDisplayPane.MapDisplayPane?>
 <?import javafx.scene.layout.HBox?>
 <?import HexMapBuilder.sideChoicePanelComponents.fieldTypeChoice.FieldChooserPane?>
+<?import HexMapBuilder.sideChoicePanelComponents.symbolTypeChoice.SymbolChooserPane?>
 <BorderPane fx:controller="HexMapBuilder.controllers.Controller"
             xmlns:fx="http://javafx.com/fxml"
             stylesheets="@mainStyles.css">
@@ -63,11 +64,9 @@
             <padding><Insets bottom="5" top="5" left="10" right="10"/></padding>
             <AppButton text="TEMP"/>
             <AppButton text="TEMP"/>
-            <AppButton text="TEMP"/>
-            <AppButton text="TEMP"/>
             <FieldChooserPane prefHeight="190"/>
             <AppButton text="TEMP"/>
-            <AppButton text="TEMP"/>
+            <SymbolChooserPane prefHeight="200"/>
             <AppButton text="TEMP"/>
         </VBox>
     </right>

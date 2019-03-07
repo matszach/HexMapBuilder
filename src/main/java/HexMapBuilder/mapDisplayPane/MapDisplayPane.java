@@ -3,15 +3,10 @@ package HexMapBuilder.mapDisplayPane;
 import HexMapBuilder.mapDisplayPane.hexFields.FieldType;
 import HexMapBuilder.mapDisplayPane.hexFields.HexField;
 import HexMapBuilder.mapDisplayPane.hexFields.symbols.Symbol;
-import HexMapBuilder.mapDisplayPane.hexFields.symbols.SymbolColorStyle;
 import HexMapBuilder.mapDisplayPane.hexFields.symbols.SymbolFactory;
-import HexMapBuilder.mapDisplayPane.hexFields.symbols.SymbolType;
 import HexMapBuilder.mapSaving.MapSerializable;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Pane;
-
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 
 
 public class MapDisplayPane extends ScrollPane {
@@ -23,7 +18,7 @@ public class MapDisplayPane extends ScrollPane {
         return currentMap;
     }
 
-    private static void placeHexFieldInLocation(HexField hexField){
+    private static void placeHexField(HexField hexField){
 
         // base location
         double baseX = -HexField.HEXFIELD_WIDTH/2;
@@ -66,7 +61,7 @@ public class MapDisplayPane extends ScrollPane {
         for(int c = 0; c < cols; c++){
             for(int r = 0; r < rows; r++){
                 HexField hexField = new HexField(fieldType,r,c);
-                placeHexFieldInLocation(hexField);
+                placeHexField(hexField);
             }
         }
     }
@@ -79,7 +74,10 @@ public class MapDisplayPane extends ScrollPane {
         for(int c = 0; c < ms.getTypeMap().length; c++){
             for(int r = 0; r < ms.getTypeMap()[0].length; r++){
                 HexField hexField = new HexField(ms.getTypeMap()[r][c],r,c);
-                placeHexFieldInLocation(hexField);
+                if(ms.getSymbolTypeMap()[r][c] != null && ms.getSymbolColorStyle()[r][c] != null){
+                    hexField.setSymbol(SymbolFactory.getSymbol(ms.getSymbolTypeMap()[r][c],ms.getSymbolColorStyle()[r][c]));
+                }
+                placeHexField(hexField);
             }
         }
     }
