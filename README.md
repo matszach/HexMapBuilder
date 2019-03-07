@@ -5,11 +5,11 @@ This project is still in its most basic form, and a lot of intended features hav
 
 So far you can:
 - draw a map of 100x100 size,
+- place symbols on hex-tiles,
 - save and load it via Object Imput and Output Stream,
 
 Upcoming features:
 - exporting maps to .png files,
-- ability to place symbols on hex-tiles,
 - ability to save more than one map (mapsaing is still in it's infancy)
 
 This project utilizes:
