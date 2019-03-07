@@ -18,6 +18,7 @@ public class SymbolChooserPane extends Pane {
     private final static double OFFSET = 5;
 
     private static List<Symbol> symbolsAsButtons = new ArrayList<>();
+    private static NullSymbol nullSymbol = new NullSymbol();
 
 
 
@@ -34,10 +35,10 @@ public class SymbolChooserPane extends Pane {
             symbol.setOnMouseClicked(e-> {
                 FieldChooserPane.allHexesOff();
                 MouseBrushController.setCurrentType(null);
+                MouseBrushController.setSymbolRemovingMode(false);
                 MouseBrushController.setCurrentSymbolType(symbol.getSymbolType());
                 MouseBrushController.setCurrentSymbolColorStyle(symbol.getSymbolColorStyle());
                 allSymbolsOff();
-
 
                 // temp TODO
                 symbol.setStrokeWidth(2);
@@ -83,6 +84,7 @@ public class SymbolChooserPane extends Pane {
         setPrefHeight(Integer.MAX_VALUE);
         loadAllFieldTypes();
         equipHexButtons();
+        symbolsAsButtons.add(nullSymbol);
         placeSymbols();
     }
 

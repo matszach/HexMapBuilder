@@ -32,6 +32,7 @@ public class FieldChooserPane extends Pane {
                 SymbolChooserPane.allSymbolsOff();
                 MouseBrushController.setCurrentSymbolType(null);
                 MouseBrushController.setCurrentSymbolColorStyle(null);
+                MouseBrushController.setSymbolRemovingMode(false);
                 MouseBrushController.setCurrentType(hex.getFieldType());
                 allHexesOff();
                 hex.hexOn();

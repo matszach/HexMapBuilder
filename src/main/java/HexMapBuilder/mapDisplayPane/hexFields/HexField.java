@@ -63,10 +63,22 @@ public class HexField extends Polygon {
         setAllMouseInteractions(symbol); // this makes it so that clicking "through" the symbol is possible
 
     }
+    private void removeSymbol(boolean isRemovingModeOn){
+        if(!isRemovingModeOn){
+            return;
+        }else if(symbol==null){
+            return;
+        }else {
+            MapDisplayPane.getMapPane().getChildren().remove(symbol);
+            symbol=null;
+        }
+
+    }
 
     private void updateField(){
         paintField(MouseBrushController.getCurrentType());
         placeSymbol(MouseBrushController.getCurrentSymbolType(), MouseBrushController.getCurrentSymbolColorStyle());
+        removeSymbol(MouseBrushController.isSymbolRemovingMode());
     }
 
 

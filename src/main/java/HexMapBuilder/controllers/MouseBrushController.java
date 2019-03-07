@@ -16,6 +16,8 @@ public class MouseBrushController {
 
     private static SymbolColorStyle currentSymbolColorStyle;
 
+    private static boolean symbolRemovingMode;
+
 
 
 
@@ -51,5 +53,12 @@ public class MouseBrushController {
     }
     public static void setCurrentSymbolColorStyle(SymbolColorStyle currentSymbolColorStyle) {
         MouseBrushController.currentSymbolColorStyle = currentSymbolColorStyle;
+    }
+
+    public static boolean isSymbolRemovingMode() {
+        return symbolRemovingMode;
+    }
+    public static void setSymbolRemovingMode(boolean symbolRemovingMode) {
+        MouseBrushController.symbolRemovingMode = symbolRemovingMode;
     }
 }

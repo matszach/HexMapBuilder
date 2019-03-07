@@ -69,7 +69,7 @@
             <FieldChooserPane prefHeight="180"/>
             <Separator/>
             <Label text="Symbols"/>
-            <SymbolChooserPane prefHeight="90"/>
+            <SymbolChooserPane prefHeight="110"/>
             <Separator/>
         </VBox>
     </right>
