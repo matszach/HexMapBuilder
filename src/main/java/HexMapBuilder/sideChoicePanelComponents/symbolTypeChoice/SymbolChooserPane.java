@@ -80,7 +80,6 @@ public class SymbolChooserPane extends Pane {
 
 
     public SymbolChooserPane(){
-        setPrefHeight(Integer.MAX_VALUE);
         loadAllFieldTypes();
         equipHexButtons();
         symbolsAsButtons.add(nullSymbol);

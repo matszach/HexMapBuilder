@@ -62,7 +62,7 @@ public class Controller {
 
     // NEW
     private void drawNew(FieldType fieldType, int height, int width){
-        scaleView100();
+        toPrintableScale();
         MapDisplayPane.drawDefaultMap(fieldType,height,width);
     }
 
@@ -91,14 +91,12 @@ public class Controller {
     // SCALE TODO correct layout movement within ScrollPane after scaling
     private Pane mapPane = MapDisplayPane.getMapPane();
     private double currentScale = 1;
-
     private void toPrintableScale(){
         mapPane.setScaleX(1);
         mapPane.setScaleY(1);
         mapPane.setTranslateX(0);
         mapPane.setTranslateY(0);
     }
-
     private void scaleMapPane(double scale){
         currentScale = scale;
         mapPane.setScaleX(scale);
@@ -111,25 +109,30 @@ public class Controller {
         scaleMapPane(0.25);
     }
     @FXML
+    public void scaleView37_5(){
+        scaleMapPane(0.375);
+    }
+    @FXML
     public void scaleView50(){
         scaleMapPane(0.5);
+    }
+    @FXML
+    public void scaleView62_5(){
+        scaleMapPane(0.625);
     }
     @FXML
     public void scaleView75(){
         scaleMapPane(0.75);
     }
     @FXML
+    public void scaleView87_5(){
+        scaleMapPane(0.875);
+    }
+    @FXML
     public void scaleView100(){
         scaleMapPane(1);
     }
-    @FXML
-    public void scaleView125(){
-        scaleMapPane(1.25);
-    }
-    @FXML
-    public void scaleView150(){
-        scaleMapPane(1.5);
-    }
+
 
 
     // EXPORT

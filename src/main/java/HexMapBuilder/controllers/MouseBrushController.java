@@ -16,12 +16,16 @@ public class MouseBrushController {
 
     private static SymbolColorStyle currentSymbolColorStyle;
 
+    private static int brushSize;
+
     private static boolean symbolRemovingMode;
 
 
     @PostConstruct
     private static void init(){
-        currentType = FieldType.SEA; // default
+        //default values
+        currentType = FieldType.SEA;
+        brushSize = 1;
     }
 
 
@@ -48,6 +52,13 @@ public class MouseBrushController {
     }
     public static void setCurrentSymbolColorStyle(SymbolColorStyle currentSymbolColorStyle) {
         MouseBrushController.currentSymbolColorStyle = currentSymbolColorStyle;
+    }
+
+    public static int getBrushSize() {
+        return brushSize;
+    }
+    public static void setBrushSize(int brushSize) {
+        MouseBrushController.brushSize = brushSize;
     }
 
     public static boolean isSymbolRemovingMode() {

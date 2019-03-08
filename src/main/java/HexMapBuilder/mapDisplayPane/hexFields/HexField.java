@@ -11,8 +11,6 @@ import javafx.scene.Node;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 
-import java.util.Map;
-
 public class HexField extends Polygon {
 
     private static final double EQUILATERAL_TRIANGLE_RATIO = 0.866;
@@ -40,7 +38,7 @@ public class HexField extends Polygon {
 
 
     // paints and updates the field
-    private void paintField(FieldType fieldType){
+    public void paintField(FieldType fieldType){
         if(fieldType == null){
             return;
         }
@@ -63,24 +61,94 @@ public class HexField extends Polygon {
         setAllMouseInteractions(symbol); // this makes it so that clicking "through" the symbol is possible
 
     }
-    private void removeSymbol(boolean isRemovingModeOn){
+    public void removeSymbol(boolean isRemovingModeOn){
         if(!isRemovingModeOn){
             return;
         }else if(symbol==null){
             return;
-        }else {
-            MapDisplayPane.getMapPane().getChildren().remove(symbol);
-            symbol=null;
         }
-
+        MapDisplayPane.getMapPane().getChildren().remove(symbol);
+        symbol=null;
     }
 
-    private void updateField(){
+    private void updateThisField(){
         paintField(MouseBrushController.getCurrentType());
         placeSymbol(MouseBrushController.getCurrentSymbolType(), MouseBrushController.getCurrentSymbolColorStyle());
         removeSymbol(MouseBrushController.isSymbolRemovingMode());
     }
 
+
+
+    // paints and updates this field and, if needed, nearby fields
+    private void updateNeighborFieldIfNotNull(int row, int col){
+        if(row < 0 || row >= MapDisplayPane.getCurrentMap().length){
+            return;
+        } else if(col < 0 || col >= MapDisplayPane.getCurrentMap()[0].length){
+            return;
+        }
+        MapDisplayPane.getCurrentMap()[row][col].updateThisField();
+    }
+    private void updateFieldsAtBrushLocation(){
+        int size = MouseBrushController.getBrushSize();
+        if(size <= 1){
+            updateBrushSmall();
+        } else if(size == 2){
+            updateBrushMedium();
+        } else if(size == 3){
+            updateBrushLarge();
+        }
+    }
+
+    private void updateBrushSmall(){
+        updateThisField();
+    }
+    private void updateBrushMedium(){
+        updateBrushSmall();
+
+        updateNeighborFieldIfNotNull(row-1,col);
+        updateNeighborFieldIfNotNull(row+1,col);
+
+        updateNeighborFieldIfNotNull(row,col+1);
+        updateNeighborFieldIfNotNull(row,col-1);
+
+        if(col%2!=0){
+            updateNeighborFieldIfNotNull(row+1,col+1);
+            updateNeighborFieldIfNotNull(row+1,col-1);
+        } else {
+            updateNeighborFieldIfNotNull(row-1,col+1);
+            updateNeighborFieldIfNotNull(row-1,col-1);
+        }
+
+
+
+    }
+    private void updateBrushLarge(){
+        updateBrushMedium();
+
+        updateNeighborFieldIfNotNull(row-2,col);
+        updateNeighborFieldIfNotNull(row+2,col);
+
+        updateNeighborFieldIfNotNull(row,col+2);
+        updateNeighborFieldIfNotNull(row+1,col+2);
+        updateNeighborFieldIfNotNull(row-1,col+2);
+        updateNeighborFieldIfNotNull(row,col-2);
+        updateNeighborFieldIfNotNull(row+1,col-2);
+        updateNeighborFieldIfNotNull(row-1,col-2);
+
+
+        if(col%2!=0){
+            updateNeighborFieldIfNotNull(row-1,col+1);
+            updateNeighborFieldIfNotNull(row+2,col+1);
+            updateNeighborFieldIfNotNull(row+2,col-1);
+            updateNeighborFieldIfNotNull(row-1,col-1);
+        } else {
+            updateNeighborFieldIfNotNull(row-2,col+1);
+            updateNeighborFieldIfNotNull(row+1,col+1);
+            updateNeighborFieldIfNotNull(row+1,col-1);
+            updateNeighborFieldIfNotNull(row-2,col-1);
+        }
+
+    }
 
 
 
@@ -168,7 +236,7 @@ public class HexField extends Polygon {
                 return;
             }
             e.setDragDetect(true);
-            updateField();
+            updateFieldsAtBrushLocation();
         });
 
         node.setOnMouseDragged(e->{
@@ -183,7 +251,7 @@ public class HexField extends Polygon {
             if(!e.isPrimaryButtonDown()){
                 return;
             }
-            updateField();
+            updateFieldsAtBrushLocation();
         });
     }
 

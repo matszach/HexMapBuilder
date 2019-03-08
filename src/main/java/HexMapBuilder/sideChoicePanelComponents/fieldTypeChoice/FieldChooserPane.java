@@ -72,7 +72,6 @@ public class FieldChooserPane extends Pane {
 
 
     public FieldChooserPane(){
-        setPrefHeight(Integer.MAX_VALUE);
         loadAllFieldTypes();
         equipHexButtons();
         placeHexes();

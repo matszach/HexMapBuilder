@@ -1,24 +1,14 @@
-<?import javafx.geometry.Insets?>
-
-<?import javafx.scene.layout.BorderPane?>
-
-
-<?import CustomFXNodes.AppButton?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SeparatorMenuItem?>
 <?import HexMapBuilder.mapDisplayPane.MapDisplayPane?>
-<?import javafx.scene.layout.HBox?>
 <?import HexMapBuilder.sideChoicePanelComponents.fieldTypeChoice.FieldChooserPane?>
 <?import HexMapBuilder.sideChoicePanelComponents.symbolTypeChoice.SymbolChooserPane?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import HexMapBuilder.sideChoicePanelComponents.brushSizeChoice.BrushSizeChooserPane?>
 <BorderPane fx:id="mainPane" fx:controller="HexMapBuilder.controllers.Controller"
             xmlns:fx="http://javafx.com/fxml"
             stylesheets="@mainStyles.css">
-
 
 
     <!-- TOP -->
@@ -60,15 +50,17 @@
                         <items>
                             <MenuItem text="25%" onAction="#scaleView25"/>
                             <SeparatorMenuItem/>
+                            <MenuItem text="37,5%" onAction="#scaleView37_5"/>
+                            <SeparatorMenuItem/>
                             <MenuItem text="50%" onAction="#scaleView50"/>
+                            <SeparatorMenuItem/>
+                            <MenuItem text="62.5%" onAction="#scaleView62_5"/>
                             <SeparatorMenuItem/>
                             <MenuItem text="75%" onAction="#scaleView75"/>
                             <SeparatorMenuItem/>
+                            <MenuItem text="87.5%" onAction="#scaleView87_5"/>
+                            <SeparatorMenuItem/>
                             <MenuItem text="100%" onAction="#scaleView100"/>
-                            <SeparatorMenuItem/>
-                            <MenuItem text="125%" onAction="#scaleView125"/>
-                            <SeparatorMenuItem/>
-                            <MenuItem text="150%" onAction="#scaleView150"/>
                         </items>
                     </Menu>
 
@@ -79,12 +71,10 @@
     </top>
 
 
-
     <!-- LEFT -->
     <left>
 
     </left>
-
 
 
     <!-- CENTER -->
@@ -93,12 +83,16 @@
     </center>
 
 
-
     <!-- RIGHT -->
     <right>
         <!-- minHeight here prevents ChooserPanes overlapping when the window is resized-->
-        <VBox fx:id="sideChoicePanel" spacing="10" alignment="TOP_CENTER" minHeight="400">
-            <padding><Insets bottom="5" top="5" left="10" right="10"/></padding>
+        <VBox fx:id="sideChoicePanel" spacing="10" alignment="TOP_CENTER" minHeight="500">
+            <padding>
+                <Insets bottom="5" top="5" left="10" right="10"/>
+            </padding>
+            <Label text="Brush size"/>
+            <BrushSizeChooserPane spacing="5" alignment="CENTER" prefHeight="60"/>
+            <Separator/>
             <Label text="Field type"/>
             <FieldChooserPane prefHeight="180"/>
             <Separator/>
@@ -109,12 +103,10 @@
     </right>
 
 
-
     <!-- BOTTOM -->
     <bottom>
 
     </bottom>
-
 
 
 </BorderPane>
