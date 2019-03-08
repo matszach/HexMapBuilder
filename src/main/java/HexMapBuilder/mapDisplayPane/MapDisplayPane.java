@@ -70,9 +70,10 @@ public class MapDisplayPane extends ScrollPane {
 
     // draw map from MapSerializable
     public static void drawFromMapSerializable(MapSerializable ms){
+        currentMap = new HexField[ms.getTypeMap().length][ms.getTypeMap()[0].length];
         mapPane.getChildren().clear();
-        for(int c = 0; c < ms.getTypeMap().length; c++){
-            for(int r = 0; r < ms.getTypeMap()[0].length; r++){
+        for(int c = 0; c < ms.getTypeMap()[0].length; c++){
+            for(int r = 0; r < ms.getTypeMap().length; r++){
                 HexField hexField = new HexField(ms.getTypeMap()[r][c],r,c);
                 if(ms.getSymbolTypeMap()[r][c] != null && ms.getSymbolColorStyle()[r][c] != null){
                     hexField.setSymbol(SymbolFactory.getSymbol(ms.getSymbolTypeMap()[r][c],ms.getSymbolColorStyle()[r][c]));
@@ -87,7 +88,8 @@ public class MapDisplayPane extends ScrollPane {
     // Constructor
     public MapDisplayPane(){
         setContent(mapPane);
-        drawDefaultMap(FieldType.SEA,100,100);
+        // TEMP todo -> remove this and make it impossible to save a file if no map is loaded
+        drawDefaultMap(FieldType.SEA,60,90);
     }
 
 

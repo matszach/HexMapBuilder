@@ -30,11 +30,21 @@
 
                     <Menu text="File">
                         <items>
-                            <MenuItem text="New" onAction="#drawNewMap"/>
-                            <SeparatorMenuItem/>
                             <MenuItem text="Save" onAction="#saveMap"/>
                             <SeparatorMenuItem/>
                             <MenuItem text="Load" onAction="#loadMap"/>
+                            <SeparatorMenuItem/>
+                            <Menu text="New">
+                                <MenuItem text="Very Small 30x20" onAction="#drawNewMapVS"/>
+                                <SeparatorMenuItem/>
+                                <MenuItem text="Small 60x40" onAction="#drawNewMapS"/>
+                                <SeparatorMenuItem/>
+                                <MenuItem text="Medium 90x60" onAction="#drawNewMapM"/>
+                                <SeparatorMenuItem/>
+                                <MenuItem text="Large 120x80" onAction="#drawNewMapL"/>
+                                <SeparatorMenuItem/>
+                                <MenuItem text="Very Large 150x100" onAction="#drawNewMapVL"/>
+                            </Menu>
                         </items>
                     </Menu>
 

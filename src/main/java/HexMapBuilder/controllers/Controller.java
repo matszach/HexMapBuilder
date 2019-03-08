@@ -53,9 +53,33 @@ public class Controller {
     }
 
     @FXML
-    public void drawNewMap(){
+    public void drawNewMapVS(){
         //TEMP
-        MapDisplayPane.drawDefaultMap(FieldType.SEA, 100, 100);
+        MapDisplayPane.drawDefaultMap(FieldType.SEA,20,30);
+    }
+
+    @FXML
+    public void drawNewMapS(){
+        //TEMP
+        MapDisplayPane.drawDefaultMap(FieldType.SEA,40,60);
+    }
+
+    @FXML
+    public void drawNewMapM(){
+        //TEMP
+        MapDisplayPane.drawDefaultMap(FieldType.SEA,60,90);
+    }
+
+    @FXML
+    public void drawNewMapL(){
+        //TEMP
+        MapDisplayPane.drawDefaultMap(FieldType.SEA,80,120);
+    }
+
+    @FXML
+    public void drawNewMapVL(){
+        //TEMP
+        MapDisplayPane.drawDefaultMap(FieldType.SEA,100,150);
     }
 
     @FXML
