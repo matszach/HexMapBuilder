@@ -5,11 +5,15 @@ import HexMapBuilder.mapDisplayPane.hexFields.HexField;
 import HexMapBuilder.mapDisplayPane.hexFields.symbols.Symbol;
 import HexMapBuilder.mapDisplayPane.hexFields.symbols.SymbolFactory;
 import HexMapBuilder.mapSaving.MapSerializable;
+import javafx.geometry.Insets;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Pane;
 
 
 public class MapDisplayPane extends ScrollPane {
+
+    public static final double MAP_PREF_WIDTH = 5000;
+    public static final double MAP_PREF_HEIGHT = 4000;
 
     private static Pane mapPane = new Pane();
 
@@ -88,6 +92,7 @@ public class MapDisplayPane extends ScrollPane {
     // Constructor
     public MapDisplayPane(){
         setContent(mapPane);
+//        mapPane.setPadding(new Insets(0,0,-1,-1)); // "pushes" the map to left top corner - breaks export to png
         // TEMP todo -> remove this and make it impossible to save a file if no map is loaded
         drawDefaultMap(FieldType.SEA,60,90);
     }

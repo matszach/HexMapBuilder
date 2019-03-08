@@ -2,51 +2,55 @@ package HexMapBuilder.mapDisplayPane.hexFields.symbols;
 
 import HexMapBuilder.mapDisplayPane.hexFields.HexField;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Polygon;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 
 @Component
 public class SymbolFactory {
-    
-    public final static double DESIRED_SYMBOL_WIDTH = HexField.HEXFIELD_WIDTH/2;
-    public final static double DESIRED_SYMBOL_HEIGHT = HexField.HEXFIELD_HEIGHT/2;
+
+    // desired symbol width and height
+    public final static double DS_WIDTH = HexField.HEXFIELD_WIDTH/2;
+    public final static double DS_HEIGHT = HexField.HEXFIELD_HEIGHT/2;
     
     private final static double[] POINTS_FOR_CROWN = new double[]{
             0,0,
-            0,-DESIRED_SYMBOL_HEIGHT,
-            DESIRED_SYMBOL_WIDTH/4,-DESIRED_SYMBOL_HEIGHT/2,
-            DESIRED_SYMBOL_WIDTH/2,-DESIRED_SYMBOL_HEIGHT,
-            DESIRED_SYMBOL_WIDTH/4*3,-DESIRED_SYMBOL_HEIGHT/2,
-            DESIRED_SYMBOL_WIDTH,-DESIRED_SYMBOL_HEIGHT,
-            DESIRED_SYMBOL_WIDTH,0};
+            0,-DS_HEIGHT,
+            DS_WIDTH /4,-DS_HEIGHT /2,
+            DS_WIDTH /2,-DS_HEIGHT,
+            DS_WIDTH /4*3,-DS_HEIGHT /2,
+            DS_WIDTH,-DS_HEIGHT,
+            DS_WIDTH,0};
 
     private final static double[] POINTS_FOR_CASTLE = new double[]{
             0,0,
-            0,-DESIRED_SYMBOL_HEIGHT,
-            DESIRED_SYMBOL_WIDTH/5,-DESIRED_SYMBOL_HEIGHT,
-            DESIRED_SYMBOL_WIDTH/5,-DESIRED_SYMBOL_HEIGHT/3*2,
-            DESIRED_SYMBOL_WIDTH/5*2,-DESIRED_SYMBOL_HEIGHT/3*2,
-            DESIRED_SYMBOL_WIDTH/5*2,-DESIRED_SYMBOL_HEIGHT,
-            DESIRED_SYMBOL_WIDTH/5*3,-DESIRED_SYMBOL_HEIGHT,
-            DESIRED_SYMBOL_WIDTH/5*3,-DESIRED_SYMBOL_HEIGHT/3*2,
-            DESIRED_SYMBOL_WIDTH/5*4,-DESIRED_SYMBOL_HEIGHT/3*2,
-            DESIRED_SYMBOL_WIDTH/5*4,-DESIRED_SYMBOL_HEIGHT,
-            DESIRED_SYMBOL_WIDTH/5*5,-DESIRED_SYMBOL_HEIGHT,
-            DESIRED_SYMBOL_WIDTH,0};
+            0,-DS_HEIGHT,
+            DS_WIDTH /5,-DS_HEIGHT,
+            DS_WIDTH /5,-DS_HEIGHT /3*2,
+            DS_WIDTH /5*2,-DS_HEIGHT /3*2,
+            DS_WIDTH /5*2,-DS_HEIGHT,
+            DS_WIDTH /5*3,-DS_HEIGHT,
+            DS_WIDTH /5*3,-DS_HEIGHT /3*2,
+            DS_WIDTH /5*4,-DS_HEIGHT /3*2,
+            DS_WIDTH /5*4,-DS_HEIGHT,
+            DS_WIDTH /5*5,-DS_HEIGHT,
+            DS_WIDTH,0};
 
     private final static double[] POINTS_FOR_SQUARE = new double[]{
             0,0,
-            0,-DESIRED_SYMBOL_HEIGHT,
-            DESIRED_SYMBOL_WIDTH,-DESIRED_SYMBOL_HEIGHT,
-            DESIRED_SYMBOL_WIDTH,0};
+            0,-DS_HEIGHT,
+            DS_WIDTH,-DS_HEIGHT,
+            DS_WIDTH,0};
 
     private final static double[] POINTS_FOR_TRIANGLE = new double[]{
             0,0,
-            DESIRED_SYMBOL_WIDTH/2,-DESIRED_SYMBOL_HEIGHT,
-            DESIRED_SYMBOL_WIDTH,0};
+            DS_WIDTH /2,-DS_HEIGHT,
+            DS_WIDTH,0};
 
+    private final static double[] POINTS_FOR_RHOMBUS = new double[]{
+            DS_WIDTH/2,0,
+            0,-DS_HEIGHT/2,
+            DS_WIDTH/2,-DS_HEIGHT,
+            DS_WIDTH,-DS_HEIGHT/2};
 
 
     private static Symbol currentSymbol;
@@ -58,6 +62,7 @@ public class SymbolFactory {
             case CASTLE: return POINTS_FOR_CASTLE;
             case SQUARE: return POINTS_FOR_SQUARE;
             case TRIANGLE: return POINTS_FOR_TRIANGLE;
+            case RHOMBUS: return  POINTS_FOR_RHOMBUS;
             default: return POINTS_FOR_SQUARE; // fixme?
         }
     }

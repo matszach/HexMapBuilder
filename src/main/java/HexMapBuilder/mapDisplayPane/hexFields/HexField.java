@@ -19,7 +19,7 @@ public class HexField extends Polygon {
     public static final double HEXFIELD_WIDTH = 35;
     public static final double HEXFIELD_HEIGHT = HEXFIELD_WIDTH * EQUILATERAL_TRIANGLE_RATIO;
     
-    private static final double SCALE_HOVER_ON = 1.08;
+    private static final double SCALE_HOVER_ON = 1.12;
     private static final double SCALE_HOVER_OFF = 1.00;
 
     private static final double STROKE_WIDTH_HOVER_ON = 2.5;

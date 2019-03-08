@@ -1,7 +1,6 @@
 package HexMapBuilder.sideChoicePanelComponents.symbolTypeChoice;
 
 import HexMapBuilder.controllers.MouseBrushController;
-import HexMapBuilder.mapDisplayPane.hexFields.HexField;
 import HexMapBuilder.mapDisplayPane.hexFields.symbols.Symbol;
 import HexMapBuilder.mapDisplayPane.hexFields.symbols.SymbolColorStyle;
 import HexMapBuilder.mapDisplayPane.hexFields.symbols.SymbolFactory;
@@ -71,8 +70,8 @@ public class SymbolChooserPane extends Pane {
         int rowNum = index/SymbolColorStyle.values().length;
         int colNum = index%SymbolColorStyle.values().length;
 
-        double locX = colNum * (SymbolFactory.DESIRED_SYMBOL_WIDTH*1.2) + OFFSET;
-        double locY = rowNum * (SymbolFactory.DESIRED_SYMBOL_HEIGHT*1.5);
+        double locX = colNum * (SymbolFactory.DS_WIDTH *1.2) + OFFSET;
+        double locY = rowNum * (SymbolFactory.DS_HEIGHT *1.5);
 
         symbol.relocate(locX,locY);
         getChildren().add(symbol);

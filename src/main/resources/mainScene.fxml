@@ -55,6 +55,23 @@
                         </items>
                     </Menu>
 
+
+                    <Menu text="Scale">
+                        <items>
+                            <MenuItem text="25%" onAction="#scaleView25"/>
+                            <SeparatorMenuItem/>
+                            <MenuItem text="50%" onAction="#scaleView50"/>
+                            <SeparatorMenuItem/>
+                            <MenuItem text="75%" onAction="#scaleView75"/>
+                            <SeparatorMenuItem/>
+                            <MenuItem text="100%" onAction="#scaleView100"/>
+                            <SeparatorMenuItem/>
+                            <MenuItem text="125%" onAction="#scaleView125"/>
+                            <SeparatorMenuItem/>
+                            <MenuItem text="150%" onAction="#scaleView150"/>
+                        </items>
+                    </Menu>
+
                 </MenuBar>
             </center>
 
@@ -86,7 +103,7 @@
             <FieldChooserPane prefHeight="180"/>
             <Separator/>
             <Label text="Symbols"/>
-            <SymbolChooserPane prefHeight="110"/>
+            <SymbolChooserPane prefHeight="130"/>
             <Separator/>
         </VBox>
     </right>

@@ -1,5 +1,5 @@
 package HexMapBuilder.mapDisplayPane.hexFields.symbols;
 
 public enum SymbolType {
-    CROWN, CASTLE, SQUARE, TRIANGLE
+    CROWN, CASTLE, SQUARE, TRIANGLE, RHOMBUS
 }
