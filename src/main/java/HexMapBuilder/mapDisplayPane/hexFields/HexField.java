@@ -8,8 +8,12 @@ import HexMapBuilder.mapDisplayPane.hexFields.symbols.SymbolColorStyle;
 import HexMapBuilder.mapDisplayPane.hexFields.symbols.SymbolFactory;
 import HexMapBuilder.mapDisplayPane.hexFields.symbols.SymbolType;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 
 public class HexField extends Polygon {
 
@@ -23,12 +27,16 @@ public class HexField extends Polygon {
     private static final double STROKE_WIDTH_HOVER_ON = 2.5;
     private static final double STROKE_WIDTH_HOVER_OFF = 1;
 
+    private static final double PREF_LABEL_WIDTH = 200;
+
     // HexField's type
     private FieldType fieldType;
 
     // Hexfield's symbol
     private Symbol symbol;
 
+    // Hexfield's label
+    private Label label;
 
     // HexFields coordinates
     private int row;
@@ -51,30 +59,56 @@ public class HexField extends Polygon {
         }
         if(symbol!=null){
             // removes current symbol if already placed
-            MapDisplayPane.getMapPane().getChildren().remove(symbol);
+            MapDisplayPane.getSymbolLayer().getChildren().remove(symbol);
         }
 
         symbol = SymbolFactory.getSymbol(symbolType, symbolColorStyle);
         symbol.relocate(getLayoutX()-HexField.HEXFIELD_WIDTH*0.78,getLayoutY()-HEXFIELD_HEIGHT*0.8);
-        MapDisplayPane.getMapPane().getChildren().add(symbol);
+        MapDisplayPane.getSymbolLayer().getChildren().add(symbol);
         symbol.toFront();
-        setAllMouseInteractions(symbol); // this makes it so that clicking "through" the symbol is possible
-
+        setAllMouseInteractions(symbol); // symbol mimics it's hexfield mouse events
     }
-    public void removeSymbol(boolean isRemovingModeOn){
-        if(!isRemovingModeOn){
+    public void removeSymbol(boolean isSymbolRemovingModeOn){
+        if(!isSymbolRemovingModeOn){
             return;
         }else if(symbol==null){
             return;
         }
-        MapDisplayPane.getMapPane().getChildren().remove(symbol);
+        MapDisplayPane.getSymbolLayer().getChildren().remove(symbol);
         symbol=null;
+    }
+    public void placeText(String textToPlace){
+        if(textToPlace == null || textToPlace.trim().equals("")){
+            return;
+        }
+        if(label != null){
+            MapDisplayPane.getTextLayer().getChildren().remove(label);
+        }
+        // creates a label and places it on textLayer
+        label = new Label(textToPlace);
+        label.setTextFill(Color.BLACK);
+        MapDisplayPane.getTextLayer().getChildren().add(label);
+
+        label.relocate(getLayoutX()-HexField.HEXFIELD_WIDTH*0.55-textToPlace.length()*3.5,getLayoutY()-HEXFIELD_HEIGHT*1.8);
+        label.toFront();
+        label.setPickOnBounds(false);  // label ignores mouse events
+    }
+    public void removeText(boolean isTextRemovingModeOn){
+        if(!isTextRemovingModeOn){
+            return;
+        }else if(label==null){
+            return;
+        }
+        MapDisplayPane.getTextLayer().getChildren().remove(label);
+        label=null;
     }
 
     private void updateThisField(){
         paintField(MouseBrushController.getCurrentType());
         placeSymbol(MouseBrushController.getCurrentSymbolType(), MouseBrushController.getCurrentSymbolColorStyle());
         removeSymbol(MouseBrushController.isSymbolRemovingMode());
+        placeText(MouseBrushController.getTextToPlace());
+        removeText(MouseBrushController.isTextRemovingMode());
     }
 
 
@@ -189,6 +223,7 @@ public class HexField extends Polygon {
         setStrokeWidth(STROKE_WIDTH_HOVER_ON);
         toFront();
         symbolHoverOn();
+        textHoverOn();
 
     }
     private void symbolHoverOn(){
@@ -198,6 +233,14 @@ public class HexField extends Polygon {
             symbol.toFront();
         }
     }
+    private void textHoverOn(){
+        if(label !=null){
+            label.setScaleX(SCALE_HOVER_ON);
+            label.setScaleY(SCALE_HOVER_ON);
+            label.toFront();
+        }
+    }
+    
 
 
     private void hoverOff(){
@@ -205,11 +248,18 @@ public class HexField extends Polygon {
         setScaleY(SCALE_HOVER_OFF);
         setStrokeWidth(STROKE_WIDTH_HOVER_OFF);
         symbolHoverOff();
+        textHoverOff();
     }
     private void symbolHoverOff(){
         if(symbol!=null){
             symbol.setScaleX(SCALE_HOVER_OFF);
             symbol.setScaleY(SCALE_HOVER_OFF);
+        }
+    }
+    private void textHoverOff(){
+        if(label !=null){
+            label.setScaleX(SCALE_HOVER_OFF);
+            label.setScaleY(SCALE_HOVER_OFF);
         }
     }
 
@@ -331,4 +381,11 @@ public class HexField extends Polygon {
         this.symbol = symbol;
     }
 
+    public Label getLabel() {
+        return label;
+    }
+
+    public void setLabel(Label label) {
+        this.label = label;
+    }
 }

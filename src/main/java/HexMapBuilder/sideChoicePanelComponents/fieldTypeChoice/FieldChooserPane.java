@@ -3,8 +3,10 @@ package HexMapBuilder.sideChoicePanelComponents.fieldTypeChoice;
 import HexMapBuilder.controllers.MouseBrushController;
 import HexMapBuilder.mapDisplayPane.hexFields.FieldType;
 import HexMapBuilder.mapDisplayPane.hexFields.HexField;
+import HexMapBuilder.mapDisplayPane.hexFields.symbols.Symbol;
 import HexMapBuilder.sideChoicePanelComponents.fieldTypeChoice.HexFieldAsRadioButton;
 import HexMapBuilder.sideChoicePanelComponents.symbolTypeChoice.SymbolChooserPane;
+import HexMapBuilder.sideChoicePanelComponents.textPlacementChoice.TextPlacementChoicePane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
@@ -29,10 +31,8 @@ public class FieldChooserPane extends Pane {
     private void equipHexButtons(){
         for(HexFieldAsRadioButton hex : hexes){
             hex.setOnMouseClicked(e-> {
-                SymbolChooserPane.allSymbolsOff();
-                MouseBrushController.setCurrentSymbolType(null);
-                MouseBrushController.setCurrentSymbolColorStyle(null);
-                MouseBrushController.setSymbolRemovingMode(false);
+                SymbolChooserPane.symbolPlacementModeOff();
+                TextPlacementChoicePane.textPlacementModeOff();
                 MouseBrushController.setCurrentType(hex.getFieldType());
                 allHexesOff();
                 hex.hexOn();
@@ -71,11 +71,24 @@ public class FieldChooserPane extends Pane {
 
 
 
+
+    public static void fieldPaintingModeOff(){
+        allHexesOff();
+        MouseBrushController.setCurrentType(null);
+
+
+
+    }
+
+
     public FieldChooserPane(){
         loadAllFieldTypes();
         equipHexButtons();
         placeHexes();
     }
+
+
+
 
 
 

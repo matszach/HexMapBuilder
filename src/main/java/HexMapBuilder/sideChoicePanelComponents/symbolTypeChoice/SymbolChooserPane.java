@@ -6,6 +6,7 @@ import HexMapBuilder.mapDisplayPane.hexFields.symbols.SymbolColorStyle;
 import HexMapBuilder.mapDisplayPane.hexFields.symbols.SymbolFactory;
 import HexMapBuilder.mapDisplayPane.hexFields.symbols.SymbolType;
 import HexMapBuilder.sideChoicePanelComponents.fieldTypeChoice.FieldChooserPane;
+import HexMapBuilder.sideChoicePanelComponents.textPlacementChoice.TextPlacementChoicePane;
 import javafx.scene.layout.Pane;
 
 import java.util.ArrayList;
@@ -32,8 +33,8 @@ public class SymbolChooserPane extends Pane {
     private void equipHexButtons(){
         for(Symbol symbol: symbolsAsButtons){
             symbol.setOnMouseClicked(e-> {
-                FieldChooserPane.allHexesOff();
-                MouseBrushController.setCurrentType(null);
+                FieldChooserPane.fieldPaintingModeOff();
+                TextPlacementChoicePane.textPlacementModeOff();
                 MouseBrushController.setSymbolRemovingMode(false);
                 MouseBrushController.setCurrentSymbolType(symbol.getSymbolType());
                 MouseBrushController.setCurrentSymbolColorStyle(symbol.getSymbolColorStyle());
@@ -76,6 +77,15 @@ public class SymbolChooserPane extends Pane {
         symbol.relocate(locX,locY);
         getChildren().add(symbol);
     }
+
+
+    public static void symbolPlacementModeOff(){
+        allSymbolsOff();
+        MouseBrushController.setSymbolRemovingMode(false);
+        MouseBrushController.setCurrentSymbolType(null);
+        MouseBrushController.setCurrentSymbolColorStyle(null);
+    }
+
 
 
 

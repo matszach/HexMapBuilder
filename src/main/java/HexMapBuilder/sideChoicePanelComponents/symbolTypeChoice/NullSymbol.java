@@ -4,6 +4,7 @@ import HexMapBuilder.controllers.MouseBrushController;
 import HexMapBuilder.mapDisplayPane.hexFields.HexField;
 import HexMapBuilder.mapDisplayPane.hexFields.symbols.Symbol;
 import HexMapBuilder.sideChoicePanelComponents.fieldTypeChoice.FieldChooserPane;
+import HexMapBuilder.sideChoicePanelComponents.textPlacementChoice.TextPlacementChoicePane;
 import javafx.scene.paint.Color;
 import org.springframework.stereotype.Component;
 
@@ -13,12 +14,10 @@ import javax.annotation.PostConstruct;
 public class NullSymbol extends Symbol {
 
     private void onAction(){
-        FieldChooserPane.allHexesOff();
-        MouseBrushController.setCurrentSymbolType(null);
-        MouseBrushController.setCurrentSymbolColorStyle(null);
-        MouseBrushController.setCurrentType(null);
+        FieldChooserPane.fieldPaintingModeOff();
+        SymbolChooserPane.symbolPlacementModeOff();
+        TextPlacementChoicePane.textPlacementModeOff();
         MouseBrushController.setSymbolRemovingMode(true);
-        SymbolChooserPane.allSymbolsOff();
         setStrokeWidth(2);
         setScaleX(1.08);
         setScaleY(1.08);

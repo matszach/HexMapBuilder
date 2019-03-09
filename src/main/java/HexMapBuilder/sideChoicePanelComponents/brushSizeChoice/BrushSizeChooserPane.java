@@ -1,23 +1,28 @@
 package HexMapBuilder.sideChoicePanelComponents.brushSizeChoice;
 
 import HexMapBuilder.controllers.MouseBrushController;
-import HexMapBuilder.sideChoicePanelComponents.fieldTypeChoice.HexFieldAsRadioButton;
 import javafx.scene.layout.HBox;
-import javafx.scene.shape.Circle;
 
 public class BrushSizeChooserPane extends HBox {
 
 
     private static CircleButton smallBrushMode = new CircleButton(8);
-    private static CircleButton mediumBrushMode = new CircleButton(16);
-    private static CircleButton largeBrushMode = new CircleButton(24);
+    private static CircleButton mediumBrushMode = new CircleButton(12);
+    private static CircleButton largeBrushMode = new CircleButton(16);
 
 
 
-    private void placeCircleButtons(){
-        getChildren().addAll(largeBrushMode,mediumBrushMode,smallBrushMode);
+    public BrushSizeChooserPane(){
+        setPrefHeight(Integer.MAX_VALUE);
+        placeCircleButtons();
+        equipWithActions();
+        setDefault();
+
     }
 
+    private void placeCircleButtons(){
+        getChildren().addAll(smallBrushMode,mediumBrushMode,largeBrushMode);
+    }
 
     private void equipWithActions(){
         smallBrushMode.setOnMousePressed(e->{
@@ -45,8 +50,6 @@ public class BrushSizeChooserPane extends HBox {
 
     }
 
-
-
     private void setDefault(){
         if(MouseBrushController.getBrushSize()==1){
             smallBrushMode.selectOn();
@@ -55,15 +58,6 @@ public class BrushSizeChooserPane extends HBox {
         } else {
             largeBrushMode.selectOn();
         }
-    }
-
-
-    public BrushSizeChooserPane(){
-        setPrefHeight(Integer.MAX_VALUE);
-        placeCircleButtons();
-        equipWithActions();
-        setDefault();
-
     }
 
 

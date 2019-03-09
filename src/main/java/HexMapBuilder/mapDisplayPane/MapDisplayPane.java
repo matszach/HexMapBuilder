@@ -2,17 +2,21 @@ package HexMapBuilder.mapDisplayPane;
 
 import HexMapBuilder.mapDisplayPane.hexFields.FieldType;
 import HexMapBuilder.mapDisplayPane.hexFields.HexField;
-import HexMapBuilder.mapDisplayPane.hexFields.symbols.Symbol;
 import HexMapBuilder.mapDisplayPane.hexFields.symbols.SymbolFactory;
 import HexMapBuilder.mapSaving.MapSerializable;
-import javafx.geometry.Insets;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 
 
 public class MapDisplayPane extends ScrollPane {
 
-    private static Pane mapPane = new Pane();
+    private static StackPane mapStackPane = new StackPane();
+    private static Pane hexFieldLayer = new Pane();
+    private static Pane symbolLayer = new Pane();
+    private static Pane textLayer = new Pane();
 
     private static HexField[][] currentMap;
     public static HexField[][] getCurrentMap() {
@@ -43,22 +47,33 @@ public class MapDisplayPane extends ScrollPane {
         currentMap[row][col] = hexField;
 
         // placement
-        mapPane.getChildren().add(hexField);
+        hexFieldLayer.getChildren().add(hexField);
 
         // if hexfield has a symbol ->
         if(hexField.getSymbol()!=null){
             hexField.placeSymbol(hexField.getSymbol().getSymbolType(), hexField.getSymbol().getSymbolColorStyle());
-            hexField.getSymbol().toFront();
+        }
+
+        // if hexfield has label
+        if(hexField.getLabel()!=null){
+            hexField.placeText(hexField.getLabel().getText());
         }
 
     }
 
 
+    // resets all layers
+    private static void resetAllLayers(){
+        hexFieldLayer.getChildren().clear();
+        symbolLayer.getChildren().clear();
+        textLayer.getChildren().clear();
+    }
 
-    // works best with 100x100 or smaller, ~150x150 is about the limit.
+
+    // draws default, empty map
     public static void drawDefaultMap(FieldType fieldType, int rows, int cols){
         currentMap = new HexField[rows][cols];
-        mapPane.getChildren().clear();
+        resetAllLayers();
         for(int c = 0; c < cols; c++){
             for(int r = 0; r < rows; r++){
                 HexField hexField = new HexField(fieldType,r,c);
@@ -72,12 +87,15 @@ public class MapDisplayPane extends ScrollPane {
     // draw map from MapSerializable
     public static void drawFromMapSerializable(MapSerializable ms){
         currentMap = new HexField[ms.getTypeMap().length][ms.getTypeMap()[0].length];
-        mapPane.getChildren().clear();
+        resetAllLayers();
         for(int c = 0; c < ms.getTypeMap()[0].length; c++){
             for(int r = 0; r < ms.getTypeMap().length; r++){
                 HexField hexField = new HexField(ms.getTypeMap()[r][c],r,c);
                 if(ms.getSymbolTypeMap()[r][c] != null && ms.getSymbolColorStyle()[r][c] != null){
                     hexField.setSymbol(SymbolFactory.getSymbol(ms.getSymbolTypeMap()[r][c],ms.getSymbolColorStyle()[r][c]));
+                }
+                if(ms.getTextMap()[r][c] != null){
+                    hexField.setLabel(new Label(ms.getTextMap()[r][c]));
                 }
                 placeHexField(hexField);
             }
@@ -86,9 +104,16 @@ public class MapDisplayPane extends ScrollPane {
 
 
 
+
     // Constructor
     public MapDisplayPane(){
-        setContent(mapPane);
+        setContent(mapStackPane);
+        mapStackPane.getChildren().addAll(hexFieldLayer, symbolLayer, textLayer);
+        // makes textLayer and symbolLayer "transparent" to mouse events,
+        // allowing the user to interact with hexFieldLayer
+        // while keeping the textLayer and symbolLayer on top
+        textLayer.setPickOnBounds(false);
+        symbolLayer.setPickOnBounds(false);
         // TEMP todo -> remove this and make it impossible to save a file if no map is loaded
         drawDefaultMap(FieldType.SEA,60,90);
     }
@@ -99,13 +124,16 @@ public class MapDisplayPane extends ScrollPane {
 
 
     // Getters and Setters
-    public static Pane getMapPane() {
-        return mapPane;
+    public static StackPane getMapStackPane() {
+        return mapStackPane;
     }
-
-
-
-
-
-
+    public static Pane getHexFieldLayer() {
+        return hexFieldLayer;
+    }
+    public static Pane getSymbolLayer() {
+        return symbolLayer;
+    }
+    public static Pane getTextLayer() {
+        return textLayer;
+    }
 }

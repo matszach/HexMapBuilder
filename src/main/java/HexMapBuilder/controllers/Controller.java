@@ -6,7 +6,6 @@ import HexMapBuilder.mapSaving.MapSaverAndLoader;
 import HexMapBuilder.mapSaving.MapSerializable;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
 import javafx.scene.image.WritableImage;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -16,7 +15,6 @@ import javax.imageio.ImageIO;
 import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.Map;
 
 public class Controller {
 
@@ -89,7 +87,7 @@ public class Controller {
 
 
     // SCALE TODO correct layout movement within ScrollPane after scaling
-    private Pane mapPane = MapDisplayPane.getMapPane();
+    private Pane mapPane = MapDisplayPane.getMapStackPane();
     private double currentScale = 1;
     private void toPrintableScale(){
         mapPane.setScaleX(1);
@@ -148,10 +146,8 @@ public class Controller {
         // resize pane view for consistent png exports
         toPrintableScale();
         try {
-            Pane castedPane = MapDisplayPane.getMapPane();
-            WritableImage writableImage = new WritableImage((int)castedPane.getWidth() + 20,
-                    (int)castedPane.getHeight() + 20);
-            castedPane.snapshot(null, writableImage);
+            WritableImage writableImage = new WritableImage((int)mapPane.getWidth() + 20, (int)mapPane.getHeight() + 20);
+            mapPane.snapshot(null, writableImage);
             RenderedImage renderedImage = SwingFXUtils.fromFXImage(writableImage, null);
             ImageIO.write(renderedImage, "png", file);
         } catch (IOException e) {

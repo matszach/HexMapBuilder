@@ -6,6 +6,7 @@ import HexMapBuilder.mapDisplayPane.hexFields.symbols.SymbolType;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import javax.swing.*;
 
 @Component
 public class MouseBrushController {
@@ -19,6 +20,10 @@ public class MouseBrushController {
     private static int brushSize;
 
     private static boolean symbolRemovingMode;
+
+    private static String textToPlace;
+
+    private static boolean textRemovingMode;
 
 
     @PostConstruct
@@ -66,5 +71,19 @@ public class MouseBrushController {
     }
     public static void setSymbolRemovingMode(boolean symbolRemovingMode) {
         MouseBrushController.symbolRemovingMode = symbolRemovingMode;
+    }
+
+    public static String getTextToPlace() {
+        return textToPlace;
+    }
+    public static void setTextToPlace(String textToPlace) {
+        MouseBrushController.textToPlace = textToPlace;
+    }
+
+    public static boolean isTextRemovingMode() {
+        return textRemovingMode;
+    }
+    public static void setTextRemovingMode(boolean textRemovingMode) {
+        MouseBrushController.textRemovingMode = textRemovingMode;
     }
 }

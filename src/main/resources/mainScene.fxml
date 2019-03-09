@@ -6,6 +6,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 <?import HexMapBuilder.sideChoicePanelComponents.brushSizeChoice.BrushSizeChooserPane?>
+<?import HexMapBuilder.sideChoicePanelComponents.textPlacementChoice.TextPlacementChoicePane?>
 <BorderPane fx:id="mainPane" fx:controller="HexMapBuilder.controllers.Controller"
             xmlns:fx="http://javafx.com/fxml"
             stylesheets="@mainStyles.css">
@@ -86,18 +87,21 @@
     <!-- RIGHT -->
     <right>
         <!-- minHeight here prevents ChooserPanes overlapping when the window is resized-->
-        <VBox fx:id="sideChoicePanel" spacing="10" alignment="TOP_CENTER" minHeight="500">
+        <VBox spacing="10" alignment="TOP_CENTER" minHeight="900" prefWidth="130">
             <padding>
                 <Insets bottom="5" top="5" left="10" right="10"/>
             </padding>
             <Label text="Brush size"/>
-            <BrushSizeChooserPane spacing="5" alignment="CENTER" prefHeight="60"/>
+            <BrushSizeChooserPane spacing="5" alignment="CENTER" prefHeight="50"/>
             <Separator/>
             <Label text="Field type"/>
             <FieldChooserPane prefHeight="180"/>
             <Separator/>
             <Label text="Symbols"/>
             <SymbolChooserPane prefHeight="130"/>
+            <Separator/>
+            <Label text="Labels"/>
+            <TextPlacementChoicePane prefHeight="90" spacing="5" alignment="CENTER"/>
             <Separator/>
         </VBox>
     </right>
