@@ -8,14 +8,18 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.text.Text;
+import lombok.Getter;
 
 
 public class MapDisplayPane extends ScrollPane {
 
+    @Getter
     private static StackPane mapStackPane = new StackPane();
+    @Getter
     private static Pane hexFieldLayer = new Pane();
+    @Getter
     private static Pane symbolLayer = new Pane();
+    @Getter
     private static Pane textLayer = new Pane();
 
     private static HexField[][] currentMap;
@@ -91,8 +95,8 @@ public class MapDisplayPane extends ScrollPane {
         for(int c = 0; c < ms.getTypeMap()[0].length; c++){
             for(int r = 0; r < ms.getTypeMap().length; r++){
                 HexField hexField = new HexField(ms.getTypeMap()[r][c],r,c);
-                if(ms.getSymbolTypeMap()[r][c] != null && ms.getSymbolColorStyle()[r][c] != null){
-                    hexField.setSymbol(SymbolFactory.getSymbol(ms.getSymbolTypeMap()[r][c],ms.getSymbolColorStyle()[r][c]));
+                if(ms.getSymbolTypeMap()[r][c] != null && ms.getSymbolColorStyleMap()[r][c] != null){
+                    hexField.setSymbol(SymbolFactory.getSymbol(ms.getSymbolTypeMap()[r][c],ms.getSymbolColorStyleMap()[r][c]));
                 }
                 if(ms.getTextMap()[r][c] != null){
                     hexField.setLabel(new Label(ms.getTextMap()[r][c]));
@@ -118,22 +122,4 @@ public class MapDisplayPane extends ScrollPane {
         drawDefaultMap(FieldType.SEA,60,90);
     }
 
-
-
-
-
-
-    // Getters and Setters
-    public static StackPane getMapStackPane() {
-        return mapStackPane;
-    }
-    public static Pane getHexFieldLayer() {
-        return hexFieldLayer;
-    }
-    public static Pane getSymbolLayer() {
-        return symbolLayer;
-    }
-    public static Pane getTextLayer() {
-        return textLayer;
-    }
 }

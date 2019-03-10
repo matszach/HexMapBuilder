@@ -75,9 +75,6 @@ public class FieldChooserPane extends Pane {
     public static void fieldPaintingModeOff(){
         allHexesOff();
         MouseBrushController.setCurrentType(null);
-
-
-
     }
 
 

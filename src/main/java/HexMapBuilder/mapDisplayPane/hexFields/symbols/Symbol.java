@@ -1,7 +1,10 @@
 package HexMapBuilder.mapDisplayPane.hexFields.symbols;
 
 import javafx.scene.shape.Polygon;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter @Setter
 public class Symbol extends Polygon {
 
     private SymbolType symbolType;
@@ -11,21 +14,4 @@ public class Symbol extends Polygon {
         super(doubles);
     }
 
-
-    // getters and setters
-    public SymbolType getSymbolType() {
-        return symbolType;
-    }
-
-    public void setSymbolType(SymbolType symbolType) {
-        this.symbolType = symbolType;
-    }
-
-    public SymbolColorStyle getSymbolColorStyle() {
-        return symbolColorStyle;
-    }
-
-    public void setSymbolColorStyle(SymbolColorStyle symbolColorStyle) {
-        this.symbolColorStyle = symbolColorStyle;
-    }
 }

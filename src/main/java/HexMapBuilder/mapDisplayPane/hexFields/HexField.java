@@ -14,6 +14,8 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import lombok.Getter;
+import lombok.Setter;
 
 public class HexField extends Polygon {
 
@@ -30,16 +32,21 @@ public class HexField extends Polygon {
     private static final double PREF_LABEL_WIDTH = 200;
 
     // HexField's type
+    @Getter @Setter
     private FieldType fieldType;
 
     // Hexfield's symbol
+    @Getter @Setter
     private Symbol symbol;
 
     // Hexfield's label
+    @Getter @Setter
     private Label label;
 
     // HexFields coordinates
+    @Getter @Setter
     private int row;
+    @Getter @Setter
     private int col;
 
 
@@ -86,10 +93,14 @@ public class HexField extends Polygon {
         }
         // creates a label and places it on textLayer
         label = new Label(textToPlace);
-        label.setTextFill(Color.BLACK);
+        label.setStyle(
+            "-fx-text-fill: black;"+
+            "-fx-font-weight: bold;"+
+            "-fx-font-size: 20;"
+        );
         MapDisplayPane.getTextLayer().getChildren().add(label);
 
-        label.relocate(getLayoutX()-HexField.HEXFIELD_WIDTH*0.55-textToPlace.length()*3.5,getLayoutY()-HEXFIELD_HEIGHT*1.8);
+        label.relocate(getLayoutX()-HexField.HEXFIELD_WIDTH*0.55-textToPlace.length()*5.5,getLayoutY()-HEXFIELD_HEIGHT*1.8);
         label.toFront();
         label.setPickOnBounds(false);  // label ignores mouse events
     }
@@ -344,48 +355,4 @@ public class HexField extends Polygon {
     }
 
 
-
-
-
-
-    // Getters and Setters
-    public FieldType getFieldType() {
-        return fieldType;
-    }
-
-    public void setFieldType(FieldType fieldType) {
-        this.fieldType = fieldType;
-    }
-
-    public int getRow() {
-        return row;
-    }
-
-    public void setRow(int row) {
-        this.row = row;
-    }
-
-    public int getCol() {
-        return col;
-    }
-
-    public void setCol(int col) {
-        this.col = col;
-    }
-
-    public Symbol getSymbol() {
-        return symbol;
-    }
-
-    public void setSymbol(Symbol symbol) {
-        this.symbol = symbol;
-    }
-
-    public Label getLabel() {
-        return label;
-    }
-
-    public void setLabel(Label label) {
-        this.label = label;
-    }
 }

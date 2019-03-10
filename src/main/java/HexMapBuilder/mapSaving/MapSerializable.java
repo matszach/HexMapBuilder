@@ -4,30 +4,18 @@ import HexMapBuilder.mapDisplayPane.hexFields.FieldType;
 import HexMapBuilder.mapDisplayPane.hexFields.HexField;
 import HexMapBuilder.mapDisplayPane.hexFields.symbols.SymbolColorStyle;
 import HexMapBuilder.mapDisplayPane.hexFields.symbols.SymbolType;
+import lombok.Getter;
 
 import java.io.Serializable;
 
+
+@Getter
 public class MapSerializable implements Serializable {
     private FieldType[][] typeMap;
     private SymbolType[][] symbolTypeMap;
     private SymbolColorStyle[][] symbolColorStyleMap;
     private String[][] textMap;
 
-    public FieldType[][] getTypeMap() {
-        return typeMap;
-    }
-
-    public SymbolType[][] getSymbolTypeMap() {
-        return symbolTypeMap;
-    }
-
-    public SymbolColorStyle[][] getSymbolColorStyle() {
-        return symbolColorStyleMap;
-    }
-
-    public String[][] getTextMap() {
-        return textMap;
-    }
 
     public MapSerializable(HexField[][]fieldMap){
         typeMap = new FieldType[fieldMap.length][fieldMap[0].length];

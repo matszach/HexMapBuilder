@@ -6,7 +6,6 @@ import HexMapBuilder.mapDisplayPane.hexFields.symbols.SymbolType;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import javax.swing.*;
 
 @Component
 public class MouseBrushController {

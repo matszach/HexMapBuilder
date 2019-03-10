@@ -87,7 +87,7 @@
     <!-- RIGHT -->
     <right>
         <!-- minHeight here prevents ChooserPanes overlapping when the window is resized-->
-        <VBox spacing="10" alignment="TOP_CENTER" minHeight="900" prefWidth="130">
+        <VBox spacing="10" alignment="TOP_CENTER" minHeight="650" prefWidth="130">
             <padding>
                 <Insets bottom="5" top="5" left="10" right="10"/>
             </padding>
